@@ -1,4 +1,35 @@
-  - type: textarea
+name: New Solution Impact story 
+description: Create an Issue reporting an impact story for an SNWG Solution
+title: "ISSUE TITLE"
+projects: SNWGMO-SEP/116 ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
+   - type: textarea
+    id: Source
+    attributes:
+      label: Source
+      description: Name of the source of the impact story
+      placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
+      validations: 
+        required: true
+   - type: dropdown
+    id: Value_type
+    attributes:
+      label: Value Type
+      description: Is this a story that impacts Federal or Private end users?  
+      multiple: true
+      options:
+        - US Private-sector use case
+        - US Federal use case
+        - Foreign government use case
+        - Global/Foreign private use case 
+      default: 1
+    validations:
+      required: true
+    - type: textarea
       id: audience
       attributes:
         label: Audience
