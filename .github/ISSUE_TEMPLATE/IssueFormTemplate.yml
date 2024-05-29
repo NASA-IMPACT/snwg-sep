@@ -1,6 +1,6 @@
 name: New Solution Impact story 
 description: Create an Issue reporting an impact story for an SNWG Solution
-title: "ISSUE TITLE"
+title: "Impact Story:" 
 projects: SNWGMO-SEP/116 ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
 body:
   - type: markdown
