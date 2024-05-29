@@ -18,7 +18,7 @@ jobs:
             echo "::set-output name=use_template::false"
           fi
 
-      - name: Set up Node.js
+      - name: Set up GitHub CLI
         if: steps.check_template.outputs.use_template == 'true'
         uses: actions/setup-node@v3
         with:
@@ -26,7 +26,12 @@ jobs:
 
       - name: Install GitHub CLI
         if: steps.check_template.outputs.use_template == 'true'
-        run: sudo apt-get install gh -y
+        run: |
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt-get update
+          sudo apt-get install gh
 
       - name: Authenticate GitHub CLI
         if: steps.check_template.outputs.use_template == 'true'
@@ -42,9 +47,8 @@ jobs:
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
           # Fetch the project columns to find the column ID
-          PROJECT_COLUMNS_URL=$(echo "$PROJECT_URL" | sed 's/github.com/api.github.com\/repos/')
-          COLUMNS_API_URL="$PROJECT_COLUMNS_URL/projects/$(basename $PROJECT_URL)/columns"
-          COLUMN_ID=$(gh api "$COLUMNS_API_URL" | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
+          PROJECT_ID=$(gh api "$PROJECT_URL" | jq -r '.id')
+          COLUMN_ID=$(gh api "projects/$PROJECT_ID/columns" | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
 
           # Add the issue to the column
-          gh api -X POST "$COLUMNS_API_URL/$COLUMN_ID/cards" -F "content_id=$ISSUE_NUMBER" -F "content_type=Issue"
+          gh api -X POST "projects/columns/$COLUMN_ID/cards" -f content_id="$ISSUE_NUMBER" -f content_type="Issue"
