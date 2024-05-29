@@ -13,10 +13,10 @@ body:
       label: Source
       description: Name of the source of the impact story
       placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
-      validations: 
-        required: true
+    validations: 
+      required: true
   - type: dropdown
-    id: ValueType
+    id: Value_type
     attributes:
       label: Value Type
       description: Is this a story that impacts Federal or Private end users?  
@@ -38,7 +38,7 @@ body:
     validations:
       required: false
   - type: textarea
-    id: StorySummary
+    id: Story Summary
     attributes:
       label: Summary
       description: Summarize the impact story in 1-2 plain-language sentences.
@@ -48,7 +48,7 @@ body:
   - type: dropdown
     id: SNWG-project
     attributes:
-      label: SNWGProject
+      label: SNWG Project
       description: Which SNWG project is this publication affiliated with/supporting?
       options: 
         - SNWG Program as a whole
@@ -74,7 +74,7 @@ body:
     validations: 
       required: true
   - type: textarea
-    id: impactLocation
+    id: impact-location
     attributes:
       label: Location/Venue of story impact
       description: |
@@ -101,5 +101,3 @@ body:
         Add cards on which this issue depends
         Github automatically provides a list of possible issues if you start by typing a `#`
       placeholder: depends on
-    validations:
-      required: false
