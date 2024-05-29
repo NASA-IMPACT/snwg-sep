@@ -5,8 +5,7 @@ projects: SNWGMO-SEP/116 ##replace with desired project that you would like the 
 body:
   - type: markdown
     attributes:
-     value: |
-      This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
+     value: This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
   - type: textarea
     id: Source
     attributes:
@@ -34,7 +33,7 @@ body:
     attributes:
       label: Audience
       description: Add two to three sentences that explain the intended audience of this issue
-      placeholder: private equity investors, govermnent employees, data scientists, aviation professionals, etc
+      placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
     validations:
       required: 
   - type: textarea
