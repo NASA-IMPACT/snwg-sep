@@ -20,7 +20,7 @@ body:
     attributes:
      label: Date of Publication or interview
      description: Date the value story was published or interview was held
-     placeholder: 2024-05-07
+     placeholder: "2024-05-07"
   - type: dropdown
     id: ValueType
     attributes:
