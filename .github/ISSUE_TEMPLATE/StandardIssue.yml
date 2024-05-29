@@ -1,6 +1,6 @@
 name: New SEP Issue 
 description: Create an Issue to track big ideas and their progress
-title: 
+title: Standard SEP Issue
 projects: NASA-IMPACT/116 ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
 body:
   - type: markdown
