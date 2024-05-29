@@ -71,8 +71,8 @@ body:
       - C3 - HLS- Vegetation Indices
       - Other (Please specify below)
     default: 0
-   validations: 
-    required: true
+    validations: 
+     required: true
   - type: textarea
     id: impact-location
     attributes:
