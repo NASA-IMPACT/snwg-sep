@@ -1,4 +1,4 @@
-name: Move New Impact Story Issues to Completed Column
+name: Move Issue to Column
 
 on:
   issues:
@@ -7,71 +7,32 @@ on:
 jobs:
   move-issue:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check if the issue uses NewImpactStory.yml template
-        id: check_template
+      - name: Check if the issue title contains "Impact Story"
+        id: check_title
         run: |
-          if [[ "$(jq -r .issue.body "$GITHUB_EVENT_PATH")" == *"<!-- NewImpactStory.yml -->"* ]]; then
-            echo "::set-output name=use_template::true"
-            echo "Template check passed"
+          if [[ "$(jq -r .issue.title "$GITHUB_EVENT_PATH")" == *"Impact Story"* ]]; then
+            echo "::set-output name=move_issue::true"
           else
-            echo "::set-output name=use_template::false"
-            echo "Template check failed"
+            echo "::set-output name=move_issue::false"
           fi
 
-      - name: Debug output
-        run: |
-          echo "use_template: ${{ steps.check_template.outputs.use_template }}"
-
-      - name: Set up Node.js
-        if: steps.check_template.outputs.use_template == 'true'
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Install GitHub CLI
-        if: steps.check_template.outputs.use_template == 'true'
-        run: |
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          sudo apt-get update
-          sudo apt-get install gh
-
-      - name: Authenticate GitHub CLI
-        if: steps.check_template.outputs.use_template == 'true'
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-
       - name: Move issue to Completed Impact Stories column
-        if: steps.check_template.outputs.use_template == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: steps.check_title.outputs.move_issue == 'true'
         run: |
           PROJECT_URL="${{ secrets.PROJECT_URL }}"
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
-          echo "PROJECT_URL: $PROJECT_URL"
-          echo "COLUMN_NAME: $COLUMN_NAME"
-          echo "ISSUE_NUMBER: $ISSUE_NUMBER"
-
           # Extract org name and project number from the project URL
           ORG_NAME=$(echo $PROJECT_URL | cut -d'/' -f4)
           PROJECT_NUMBER=$(echo $PROJECT_URL | cut -d'/' -f6)
 
-          echo "ORG_NAME: $ORG_NAME"
-          echo "PROJECT_NUMBER: $PROJECT_NUMBER"
-
           # Fetch the project ID
           PROJECT_ID=$(gh api orgs/$ORG_NAME/projects | jq -r '.[] | select(.number == '$PROJECT_NUMBER') | .id')
-          
-          echo "PROJECT_ID: $PROJECT_ID"
           
           # Fetch the project columns to find the column ID
           COLUMN_ID=$(gh api projects/$PROJECT_ID/columns | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
 
-          echo "COLUMN_ID: $COLUMN_ID"
-
-          # Add the issue to the column
+          # Move the issue to the column
           gh api -X POST projects/columns/$COLUMN_ID/cards -f content_id="$ISSUE_NUMBER" -f content_type="Issue"
