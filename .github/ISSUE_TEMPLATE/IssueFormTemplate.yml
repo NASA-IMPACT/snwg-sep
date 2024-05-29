@@ -1,82 +1,98 @@
-name: New Issue Form 
-description: Create an Issue
+name: New Solution Impact story 
+description: Create an Issue reporting an impact story for an SNWG Solution
 title: ISSUE TITLE
-projects: NASA-IMPACT/# ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
+projects: SNWGMO-SEP/# ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
 body:
   - type: markdown
     attributes: 
       value: | ##Replace <Project Name> with your project name
-        This is the Issue template! The values you add will be converted to a properly formatted Issue for the <Project Name> Project. 
-  - type: dropdown
-    id: Milestones
+        This is the Issue template! The values you add will be converted to a properly formatted Issue for the SNWG SEP action management board. 
+  - type: textarea
+    id: Source
     attributes:
-      label: Milestone
-      description: What Milestone does this issue apply to? If issue is unrelated to previously listed Milestones, select External Work Request and provide full details and justification.
-      options: ## replace with desired milestones
-        - FY24 M1 (Milestone Title)
-        - FY24 M2 (Milestone Title)
-        - FY24 M3 (Milestone Title)
-        - FY24 M4 (Milestone Title)
-        - FY24 M5 (Milestone Title)
-        - External Work Request (No Milestone affiliation)
-      default: 0
-    validations:
-      required: true
-  - type: dropdown
-    id: Quarter
+      label: Source
+      description: Name of the source of the impact story
+      placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
+      validations: 
+        required: true
+   - type: dropdown
+    id: Value_type
     attributes:
-      label: Quarter
-      description: What Quarter does this issue apply to? If selecting multiple quarters, please include the expected task breakdown across quarters in your task description or implementation considerations. 
+      label: Value Type
+      description: Is this a story that impacts Federal or Private end users?  
       multiple: true
       options:
-        - Q1 (1 Oct to 31 Dec)
-        - Q2 (1 Jan to 31 Mar)
-        - Q3 (1 Apr to 30 Jun)
-        - Q4 (1 Jul to 30 Sep)
+        - US Private-sector use case
+        - US Federal use case
+        - Foreign government use case
+        - Global/Foreign private use case 
       default: 1
     validations:
       required: true
   - type: textarea
-    id: description
+    id: audience
     attributes:
-      label: Description
-      description: Add two to three sentences that explain the context of this issue and what it will achieve.
-      placeholder: Questions to consider when completing this section...
-        - What is the motivation for this issue? 
-        - Is there any needed background knowledge that would be helpful to the assignee? 
-        - Is there a specific requestor for this issue? 
-        - Are there time constraints?
-        - What are the possible steps to completion? 
-        - Who are the anticipated assignees? 
-        - What problem will this issue solve?  
+      label: Audience
+      description: Add two to three sentences that explain the intended audience of this issue
+      placeholder: private equity investors, govermnent employees, data scientists, aviation professionals, etc
     validations:
-      required: true
+      required: 
   - type: textarea
-    id: Examples
+    id: Story Summary
     attributes:
-      label: Examples or References
-      description: if applicable, include examples of work that the issue will result in or references to use in development.
-      placeholder: This type of document is what I am looking for...
-          Use these files when developing your solution...
+      label: Summary
+      description: Summarize the impact story in 1-2 plain-language sentences.
+      placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
     validations:
       required: false
-  - type: textarea
-    id: deliverable
+- type: dropdown
+    id: SNWG-project
     attributes:
-      label: Deliverable
-      description: Acceptance Criteria in the form of a tasklist. Once the issue has been created, individual tasks can be converted to issues if needed. 
-      value: "- [ ] "
-    validations:
+      label: SNWG Project
+      description: Which SNWG project is this story affiliated with/supporting?
+      options: 
+        - Stakeholder Engagement Program as a whole
+        - C1 - ADMG
+        - C1 - CSDA
+        - C1 - DCD
+        - C1 - HLS
+        - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
+        - C2 - AC-GEOS
+        - C2 - Freeboard and Ice Thickness
+        - C2 - Internet of Animals
+        - C2 - NISAR Soil Moisture
+        - C2 - SatCORPS
+        - C2 - Water Quality Product
+        - C3 - Air Quality Product
+        - C3 - Planetary Boundary Layer
+        - C3 - Sea Ice
+        - C3 - TEMPO NRT
+        - C3 - HLS- Vegitation Indices
+        - Other (Please specify below)
+      default: 0
+    validations: 
       required: true
   - type: textarea
-    id: implementation-considerations
+    id: impact-location
     attributes:
-      label: Implementation Blockers or Dependencies
+      label: Location/Venue of story impact
       description: |
         Points that need to be considered when developing this feature/writing this doc
-      placeholder: Why have you selected multiple quarters? What other organizations or resources does this issue depend on to be completed?
-    validations:
+      placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
+      validations:
       required: true
+  - type: textarea
+    id: hyperlink
+    attributes: 
+      label: Link to published Source, if applicable
+      validations: 
+      required: false
+  - type: textarea
+    id: quote
+    attributes:
+      label: Quote from the published source
+      placeholder: Include the paragraph that specifically calls out the SNWG Solution. **Bold** the Solution name using '**' phrase '**'
+  
   - type: textarea
     id: dependencies
     attributes:
