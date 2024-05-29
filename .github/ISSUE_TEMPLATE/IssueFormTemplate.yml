@@ -45,7 +45,7 @@ body:
       placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
     validations:
       required: false
-- type: dropdown
+  - type: dropdown
     id: SNWG-project
     attributes:
       label: SNWG Project
