@@ -19,8 +19,10 @@ jobs:
 
       - name: Move issue to Completed Impact Stories column
         if: steps.check_title.outputs.move_issue == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_URL: ${{ secrets.PROJECT_URL }}
         run: |
-          PROJECT_URL="${{ secrets.PROJECT_URL }}"
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
