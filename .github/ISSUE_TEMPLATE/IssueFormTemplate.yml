@@ -15,6 +15,12 @@ body:
       placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
     validations: 
       required: true
+  - type: input
+    id: date
+    attributes:
+     label: Date of Publication or interview
+     description: Date the value story was published or interview was held
+     placeholder: 2024-05-07
   - type: dropdown
     id: ValueType
     attributes:
@@ -73,12 +79,12 @@ body:
       default: 0
     validations: 
       required: true
-  - type: textarea
+  - type: input
     id: impactLocation
     attributes:
       label: Location/Venue of story impact
       description: |
-        Points that need to be considered when developing this feature/writing this doc
+        What is the physical location most impacted by this use case/story?
       placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
     validations:
       required: true
@@ -86,6 +92,7 @@ body:
     id: hyperlink
     attributes: 
       label: Link to published Source, if applicable
+      placeholder: "[text](url)"
     validations: 
       required: false
   - type: textarea
