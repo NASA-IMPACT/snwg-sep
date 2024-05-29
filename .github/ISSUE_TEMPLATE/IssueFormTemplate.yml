@@ -48,31 +48,31 @@ body:
   - type: dropdown
       id: SNWG-project
       attributes:
-        label: SNWG-Solution
-        description: Which SNWG Solution is this story affiliated with/supporting?
-        options: 
-          - SNWG as an entity
-          - SNWG Assessment, MO, or SEP
-          - C1 - ADMG
-          - C1 - CSDA
-          - C1 - DCD
-          - C1 - HLS
-          - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
-          - C2 - AC-GEOS
-          - C2 - Freeboard and Ice Thickness
-          - C2 - Internet of Animals
-          - C2 - NISAR Soil Moisture
-          - C2 - SatCORPS
-          - C2 - Water Quality Product
-          - C3 - Air Quality Product
-          - C3 - Planetary Boundary Layer
-          - C3 - Sea Ice
-          - C3 - TEMPO NRT
-          - C3 - HLS- Vegetation Indices
-          - Other (Please specify below)
-        default: 0
-      validations: 
-       required: true
+       label: SNWG-Solution
+       description: Which SNWG Solution is this story affiliated with/supporting?
+       options: 
+         - SNWG as an entity
+         - SNWG Assessment, MO, or SEP
+         - C1 - ADMG
+         - C1 - CSDA
+         - C1 - DCD
+         - C1 - HLS
+         - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
+         - C2 - AC-GEOS
+         - C2 - Freeboard and Ice Thickness
+         - C2 - Internet of Animals
+         - C2 - NISAR Soil Moisture
+         - C2 - SatCORPS
+         - C2 - Water Quality Product
+         - C3 - Air Quality Product
+         - C3 - Planetary Boundary Layer
+         - C3 - Sea Ice
+         - C3 - TEMPO NRT
+         - C3 - HLS- Vegetation Indices
+         - Other (Please specify below)
+       default: 0
+     validations: 
+      required: true
   - type: textarea
     id: impact-location
     attributes:
