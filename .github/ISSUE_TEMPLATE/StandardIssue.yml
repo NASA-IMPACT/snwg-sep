@@ -20,7 +20,7 @@ body:
     attributes:
       label: Ultimate Goal
       description: Summarize the goal of this item in 1-2 plain-language sentences.
-      placeholder: Example: Communicate with stakeholders in a routine (quarterly?) avenue. 
+      placeholder: Example - Communicate with stakeholders in a routine (quarterly?) avenue. 
     validations:
       required: false
   - type: textarea
