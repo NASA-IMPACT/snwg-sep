@@ -22,14 +22,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_URL: ${{ secrets.PROJECT_URL }}
-          PROJECT_NUMBER: 116  # Set project number
         run: |
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
-          # Extract org name and project number from the project URL
+          # Extract org name, project name, and project number from the project URL
           ORG_NAME=$(echo $PROJECT_URL | cut -d'/' -f4)
-          PROJECT_NUMBER=$(echo $PROJECT_URL | cut -d'/' -f6)
+          PROJECT_NAME=$(echo $PROJECT_URL | cut -d'/' -f5)
+          PROJECT_NUMBER=$(echo $PROJECT_URL | cut -d'/' -f7)
 
           # Fetch the project ID
           PROJECT_ID=$(gh api orgs/$ORG_NAME/projects | jq -r '.[] | select(.number == '$PROJECT_NUMBER') | .id')
