@@ -1,0 +1,44 @@
+name: Move New Impact Story Issues to Completed Column
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  move-issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if the issue uses NewImpactStory.yml template
+        id: check_template
+        run: |
+          if [[ "$(jq -r .issue.body "$GITHUB_EVENT_PATH")" == *"<!-- NewImpactStory.yml -->"* ]]; then
+            echo "::set-output name=use_template::true"
+          else
+            echo "::set-output name=use_template::false"
+          fi
+
+      - name: Set up GitHub CLI
+        if: steps.check_template.outputs.use_template == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          
+      - run: npm install -g @actions/core @actions/github
+        if: steps.check_template.outputs.use_template == 'true'
+      
+      - name: Move issue to Completed Impact Stories column
+        if: steps.check_template.outputs.use_template == 'true'
+        env:
+          GITHUB_TOKEN: ${{ SNWGMOSEPPROJECT_URL }}
+        run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          PROJECT_URL=${{ secrets.PROJECT_URL }}
+          Completed Impact Stories="Completed Impact Stories"
+          ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
+
+          # Fetch the project columns to find the column ID
+          COLUMN_ID=$(gh api "$PROJECT_URL/columns" | jq -r '.[] | select(.name == "'$Completed Impact Stories'") | .id')
+
+          # Add the issue to the column
+          gh api -X POST "$PROJECT_URL/columns/$COLUMN_ID/cards" -F "content_id=$ISSUE_NUMBER" -F "content_type=Issue"
