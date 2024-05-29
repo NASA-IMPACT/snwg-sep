@@ -12,7 +12,7 @@ body:
     attributes:
       label: Topic
       description: Broad topic to be broached by the SNWG SEP
-      placeholder: Example: "HLS training" "Develop Bunny Hop Workshop" "Create Fact Sheets" 
+      placeholder: Example - HLS training Develop Bunny Hop Workshop Create Fact Sheets 
     validations: 
       required: true
   - type: textarea
