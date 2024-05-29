@@ -32,10 +32,20 @@ jobs:
           PROJECT_NUMBER=$(echo $PROJECT_URL | cut -d'/' -f7)
 
           # Fetch the project ID
-          PROJECT_ID=$(gh api orgs/$ORG_NAME/projects | jq -r '.[] | select(.number == '$PROJECT_NUMBER') | .id')
+          PROJECT_ID=$(gh api orgs/$ORG_NAME/projects | jq -r '.[] | select(.name == "'$PROJECT_NAME'") | .id')
           
+          if [ -z "$PROJECT_ID" ]; then
+            echo "Project ID not found."
+            exit 1
+          fi
+
           # Fetch the project columns to find the column ID
           COLUMN_ID=$(gh api projects/$PROJECT_ID/columns | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
+
+          if [ -z "$COLUMN_ID" ]; then
+            echo "Column ID not found."
+            exit 1
+          fi
 
           # Move the issue to the column
           gh api -X POST projects/columns/$COLUMN_ID/cards -f content_id="$ISSUE_NUMBER" -f content_type="Issue"
