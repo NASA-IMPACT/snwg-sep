@@ -22,6 +22,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_URL: ${{ secrets.PROJECT_URL }}
+          PROJECT_NUMBER: 116  # Set project number
         run: |
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
