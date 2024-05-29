@@ -46,12 +46,12 @@ jobs:
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
-          # Extract owner and repo from the project URL
-          OWNER=$(echo $PROJECT_URL | cut -d'/' -f4)
-          REPO=$(echo $PROJECT_URL | cut -d'/' -f5)
-          
+          # Extract org name and project number from the project URL
+          ORG_NAME=$(echo $PROJECT_URL | cut -d'/' -f4)
+          PROJECT_NUMBER=$(echo $PROJECT_URL | cut -d'/' -f6)
+
           # Fetch the project ID
-          PROJECT_ID=$(gh api repos/$OWNER/$REPO/projects | jq -r '.[] | select(.html_url == "'$PROJECT_URL'") | .id')
+          PROJECT_ID=$(gh api orgs/$ORG_NAME/projects | jq -r '.[] | select(.number == '$PROJECT_NUMBER') | .id')
           
           # Fetch the project columns to find the column ID
           COLUMN_ID=$(gh api projects/$PROJECT_ID/columns | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
