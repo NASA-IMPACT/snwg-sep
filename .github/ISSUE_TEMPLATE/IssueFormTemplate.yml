@@ -48,10 +48,11 @@ body:
   - type: dropdown
       id: SNWG-project
       attributes:
-        label: SNWG Project
-        description: Which SNWG project is this story affiliated with/supporting?
+        label: SNWG-Solution
+        description: Which SNWG Solution is this story affiliated with/supporting?
         options: 
-          - Stakeholder Engagement Program as a whole
+          - SNWG as an entity
+          - SNWG Assessment, MO, or SEP
           - C1 - ADMG
           - C1 - CSDA
           - C1 - DCD
@@ -67,11 +68,11 @@ body:
           - C3 - Planetary Boundary Layer
           - C3 - Sea Ice
           - C3 - TEMPO NRT
-          - C3 - HLS- Vegitation Indices
+          - C3 - HLS- Vegetation Indices
           - Other (Please specify below)
         default: 0
       validations: 
-        required: true
+       required: true
   - type: textarea
     id: impact-location
     attributes:
