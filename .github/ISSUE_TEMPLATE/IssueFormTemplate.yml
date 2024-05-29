@@ -1,104 +1,73 @@
-name: New Solution Impact story 
-description: Create an Issue reporting an impact story for an SNWG Solution
-title: "ISSUE TITLE"
-projects: SNWGMO-SEP/116 ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
-body:
-  - type: markdown
-    attributes:
-      value: |
-        This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
-   - type: textarea
-    id: Source
-    attributes:
-      label: Source
-      description: Name of the source of the impact story
-      placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
+  - type: textarea
+      id: audience
+      attributes:
+        label: Audience
+        description: Add two to three sentences that explain the intended audience of this issue
+        placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
+      validations:
+        required: 
+    - type: textarea
+      id: Story Summary
+      attributes:
+        label: Summary
+        description: Summarize the impact story in 1-2 plain-language sentences.
+        placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
+      validations:
+        required: false
+  - type: dropdown
+      id: SNWG-project
+      attributes:
+        label: SNWG Project
+        description: Which SNWG project is this story affiliated with/supporting?
+        options: 
+          - Stakeholder Engagement Program as a whole
+          - C1 - ADMG
+          - C1 - CSDA
+          - C1 - DCD
+          - C1 - HLS
+          - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
+          - C2 - AC-GEOS
+          - C2 - Freeboard and Ice Thickness
+          - C2 - Internet of Animals
+          - C2 - NISAR Soil Moisture
+          - C2 - SatCORPS
+          - C2 - Water Quality Product
+          - C3 - Air Quality Product
+          - C3 - Planetary Boundary Layer
+          - C3 - Sea Ice
+          - C3 - TEMPO NRT
+          - C3 - HLS- Vegitation Indices
+          - Other (Please specify below)
+        default: 0
       validations: 
         required: true
-   - type: dropdown
-    id: Value_type
-    attributes:
-      label: Value Type
-      description: Is this a story that impacts Federal or Private end users?  
-      multiple: true
-      options:
-        - US Private-sector use case
-        - US Federal use case
-        - Foreign government use case
-        - Global/Foreign private use case 
-      default: 1
-    validations:
-      required: true
-  - type: textarea
-    id: audience
-    attributes:
-      label: Audience
-      description: Add two to three sentences that explain the intended audience of this issue
-      placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
-    validations:
-      required: 
-  - type: textarea
-    id: Story Summary
-    attributes:
-      label: Summary
-      description: Summarize the impact story in 1-2 plain-language sentences.
-      placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
-    validations:
-      required: false
-- type: dropdown
-    id: SNWG-project
-    attributes:
-      label: SNWG Project
-      description: Which SNWG project is this story affiliated with/supporting?
-      options: 
-        - Stakeholder Engagement Program as a whole
-        - C1 - ADMG
-        - C1 - CSDA
-        - C1 - DCD
-        - C1 - HLS
-        - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
-        - C2 - AC-GEOS
-        - C2 - Freeboard and Ice Thickness
-        - C2 - Internet of Animals
-        - C2 - NISAR Soil Moisture
-        - C2 - SatCORPS
-        - C2 - Water Quality Product
-        - C3 - Air Quality Product
-        - C3 - Planetary Boundary Layer
-        - C3 - Sea Ice
-        - C3 - TEMPO NRT
-        - C3 - HLS- Vegitation Indices
-        - Other (Please specify below)
-      default: 0
-    validations: 
-      required: true
-  - type: textarea
-    id: impact-location
-    attributes:
-      label: Location/Venue of story impact
-      description: |
-        Points that need to be considered when developing this feature/writing this doc
-      placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
+    - type: textarea
+      id: impact-location
+      attributes:
+        label: Location/Venue of story impact
+        description: |
+          Points that need to be considered when developing this feature/writing this doc
+        placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
+        validations:
+        required: true
+    - type: textarea
+      id: hyperlink
+      attributes: 
+        label: Link to published Source, if applicable
+        validations: 
+        required: false
+    - type: textarea
+      id: quote
+      attributes:
+        label: Quote from the published source
+        placeholder: Include the paragraph that specifically calls out the SNWG Solution. 
+    - type: textarea
+      id: dependencies
+      attributes:
+        label: Related Issues
+        description: |
+          Add cards on which this issue depends
+          Github automatically provides a list of possible issues if you start by typing a `#`
+        placeholder: depends on
       validations:
-      required: true
-  - type: textarea
-    id: hyperlink
-    attributes: 
-      label: Link to published Source, if applicable
-      validations: 
-      required: false
-  - type: textarea
-    id: quote
-    attributes:
-      label: Quote from the published source
-      placeholder: Include the paragraph that specifically calls out the SNWG Solution. 
-  - type: textarea
-    id: dependencies
-    attributes:
-      label: Related Issues
-      description: |
-        Add cards on which this issue depends
-        Github automatically provides a list of possible issues if you start by typing a `#`
-      placeholder: depends on
-    validations:
-      required: false
+        required: false
