@@ -16,7 +16,7 @@ body:
       validations: 
         required: true
   - type: dropdown
-    id: Value_type
+    id: ValueType
     attributes:
       label: Value Type
       description: Is this a story that impacts Federal or Private end users?  
@@ -38,7 +38,7 @@ body:
     validations:
       required: false
   - type: textarea
-    id: Story Summary
+    id: StorySummary
     attributes:
       label: Summary
       description: Summarize the impact story in 1-2 plain-language sentences.
@@ -48,7 +48,7 @@ body:
   - type: dropdown
     id: SNWG-project
     attributes:
-      label: SNWG Project
+      label: SNWGProject
       description: Which SNWG project is this publication affiliated with/supporting?
       options: 
         - SNWG Program as a whole
@@ -74,7 +74,7 @@ body:
     validations: 
       required: true
   - type: textarea
-    id: impact-location
+    id: impactLocation
     attributes:
       label: Location/Venue of story impact
       description: |
