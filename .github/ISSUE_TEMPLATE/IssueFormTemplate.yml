@@ -91,7 +91,7 @@ body:
     id: quote
     attributes:
       label: Quote from the published source
-      placeholder: Include the paragraph that specifically calls out the SNWG Solution. Bold the Solution name using ** phrase **
+      placeholder: Include the paragraph that specifically calls out the SNWG Solution. 
   - type: textarea
     id: dependencies
     attributes:
