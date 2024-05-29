@@ -14,9 +14,15 @@ jobs:
         run: |
           if [[ "$(jq -r .issue.body "$GITHUB_EVENT_PATH")" == *"<!-- NewImpactStory.yml -->"* ]]; then
             echo "::set-output name=use_template::true"
+            echo "Template check passed"
           else
             echo "::set-output name=use_template::false"
+            echo "Template check failed"
           fi
+
+      - name: Debug output
+        run: |
+          echo "use_template: ${{ steps.check_template.outputs.use_template }}"
 
       - name: Set up Node.js
         if: steps.check_template.outputs.use_template == 'true'
