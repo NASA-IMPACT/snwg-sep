@@ -29,7 +29,7 @@ body:
       multiple: true
       options:
         - US Private-sector use case
-        - US Federal use case
+        - US Federal or State use case
         - Foreign government use case
         - Global/Foreign private use case 
       default: 1
