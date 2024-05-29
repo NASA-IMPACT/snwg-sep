@@ -36,7 +36,7 @@ body:
       description: Add two to three sentences that explain the intended audience of this issue
       placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
     validations:
-      required: 
+      required: false
   - type: textarea
     id: Story Summary
     attributes:
