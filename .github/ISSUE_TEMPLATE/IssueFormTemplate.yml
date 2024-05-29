@@ -7,14 +7,14 @@ body:
     attributes:
       value: |
         This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
-  - type: textarea
-  id: Source
-  attributes:
-    label: Source
-    description: Name of the source of the impact story
-    placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
-    validations: 
-      required: true
+  - type: input
+    id: Source
+    attributes:
+      label: Source
+      description: Name of the source of the impact story
+      placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
+      validations: 
+        required: true
   - type: dropdown
     id: Value_type
     attributes:
@@ -29,22 +29,22 @@ body:
       default: 1
     validations:
       required: true
-    - type: textarea
-      id: audience
-      attributes:
-        label: Audience
-        description: Add two to three sentences that explain the intended audience of this issue
-        placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
-      validations:
-        required: 
-    - type: textarea
-      id: Story Summary
-      attributes:
-        label: Summary
-        description: Summarize the impact story in 1-2 plain-language sentences.
-        placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
-      validations:
-        required: false
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience
+      description: Add two to three sentences that explain the intended audience of this issue
+      placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
+    validations:
+      required: 
+  - type: textarea
+    id: Story Summary
+    attributes:
+      label: Summary
+      description: Summarize the impact story in 1-2 plain-language sentences.
+      placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
+    validations:
+      required: false
   - type: dropdown
       id: SNWG-project
       attributes:
@@ -79,13 +79,13 @@ body:
       description: |
         Points that need to be considered when developing this feature/writing this doc
       placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
-      validations:
+    validations:
       required: true
-  - type: textarea
+  - type: input
     id: hyperlink
     attributes: 
       label: Link to published Source, if applicable
-      validations: 
+    validations: 
       required: false
   - type: textarea
     id: quote
