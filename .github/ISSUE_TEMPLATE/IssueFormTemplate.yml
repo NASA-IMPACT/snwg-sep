@@ -68,9 +68,11 @@ body:
       - C3 - Planetary Boundary Layer
       - C3 - Sea Ice
       - C3 - TEMPO NRT
-      - C3 - HLS- Vegetation Indices
+      - C3 - HLS - Vegetation Indices
       - Other (Please specify below)
       default: 0
+    validation:
+      required: true
   - type: textarea
     id: impact-location
     attributes:
