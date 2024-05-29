@@ -18,7 +18,7 @@ jobs:
             echo "::set-output name=use_template::false"
           fi
 
-      - name: Set up GitHub CLI
+      - name: Set up Node.js
         if: steps.check_template.outputs.use_template == 'true'
         uses: actions/setup-node@v3
         with:
@@ -46,9 +46,15 @@ jobs:
           COLUMN_NAME="Completed Impact Stories"
           ISSUE_NUMBER=$(jq -r .issue.number "$GITHUB_EVENT_PATH")
 
+          # Extract owner and repo from the project URL
+          OWNER=$(echo $PROJECT_URL | cut -d'/' -f4)
+          REPO=$(echo $PROJECT_URL | cut -d'/' -f5)
+          
+          # Fetch the project ID
+          PROJECT_ID=$(gh api repos/$OWNER/$REPO/projects | jq -r '.[] | select(.html_url == "'$PROJECT_URL'") | .id')
+          
           # Fetch the project columns to find the column ID
-          PROJECT_ID=$(gh api "$PROJECT_URL" | jq -r '.id')
-          COLUMN_ID=$(gh api "projects/$PROJECT_ID/columns" | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
+          COLUMN_ID=$(gh api projects/$PROJECT_ID/columns | jq -r '.[] | select(.name == "'$COLUMN_NAME'") | .id')
 
           # Add the issue to the column
-          gh api -X POST "projects/columns/$COLUMN_ID/cards" -f content_id="$ISSUE_NUMBER" -f content_type="Issue"
+          gh api -X POST projects/columns/$COLUMN_ID/cards -f content_id="$ISSUE_NUMBER" -f content_type="Issue"
