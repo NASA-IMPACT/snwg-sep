@@ -24,6 +24,13 @@ body:
     validations:
       required: false
   - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: |
+        Add context, background, or previous research that could assist in completing this issue.
+      placeholder: depends on
+  - type: textarea
     id: dependencies
     attributes:
       label: Related Issues or files
