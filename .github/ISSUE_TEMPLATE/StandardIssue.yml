@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-      This is the form for adding a new long term task for the SEP
+       This is the form for adding a new long term task for the SEP
   - type: textarea
     id: UltimateGoal
     attributes:
