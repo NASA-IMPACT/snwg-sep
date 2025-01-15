@@ -1,109 +1,167 @@
-name: New Solution Impact story 
-description: Create an Issue reporting an impact story for an SNWG Solution
-title: "[Solution Acronym] Impact Story:" 
-projects: NASA-IMPACT/139 ##replace with desired project that you would like the issues to be automatically added to. Format as project/board number
+name: 'Impact Story Submission 📈'
+description: 'Document and track the impact of SNWG Solutions in the field'
+title: '[Solution Acronym] Impact Story: Brief Description'
+projects: NASA-IMPACT/139
+
 body:
   - type: markdown
     attributes:
       value: |
-        This is the SNWG MO Record of Project Resource or Value Submission Form. The values you add will be converted to a properly formatted Issue for the SNWG Management Office.
+        ## 📝 SNWG Impact Story Submission Form
+        
+        Thank you for documenting this impact story! Please fill out the information below to help us track and showcase the value of SNWG solutions.
+        
+        ---
+
   - type: input
     id: Source
     attributes:
-      label: Source
-      description: Name of the source of the impact story
-      placeholder: (Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)
-    validations: 
+      label: '📰 Source'
+      description: 'Name of the source of the impact story'
+      placeholder: '(Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)'
+    validations:
+      required: true
+
   - type: input
     id: PublicationDate
     attributes:
-     label: Date of Publication or interview
-     description: Date the value story was published or interview was held
-     placeholder: "2024-05-07"
+      label: '📅 Publication Date'
+      description: 'Date the value story was published or interview was held'
+      placeholder: '2024-05-07'
+    validations:
+      required: true
+
   - type: dropdown
     id: ValueType
     attributes:
-      label: Value Type
-      description: Is this a story that impacts Federal or Private end users?  
+      label: '🎯 Impact Category'
+      description: 'Select all applicable categories of impact (you can choose multiple)'
       multiple: true
       options:
-        - US Private-sector use case
-        - US Federal or State use case
-        - Foreign government use case
-        - Global/Foreign private use case 
-      default: 1
+        - '🏢 US Private-sector use case'
+        - '🏛️ US Federal or State use case'
+        - '🌏 Foreign government use case'
+        - '🌍 Global/Foreign private use case'
     validations:
       required: true
+
   - type: textarea
     id: audience
     attributes:
-      label: Audience
-      description: Add two to three sentences that explain the intended audience of this issue
-      placeholder: private equity investors, government employees, data scientists, aviation professionals, etc
+      label: '👥 Target Audience'
+      description: 'Describe the primary audience that benefits from this impact'
+      placeholder: |
+        Primary: Data scientists in the aviation industry
+        Secondary: Private equity investors and government regulatory bodies
+        Stakeholders: Aviation safety professionals and defense operators
     validations:
-      required: false
+      required: true
+
   - type: textarea
     id: StorySummary
     attributes:
-      label: Summary
-      description: Summarize the impact story in 1-2 plain-language sentences.
-      placeholder: The article discusses the increase in GPS jamming in regions of geopolitical conflict from 2020 to 2023, highlighting its impact on aviation, defense, and scientific observations, and detailing the use of CubeSat data to monitor and analyze these disruptions.
+      label: '📋 Impact Summary'
+      description: |
+        Please provide:
+        1. A brief overview of the impact (1-2 sentences)
+        2. Key metrics or outcomes if available
+        3. Any notable stakeholder feedback
+      placeholder: |
+        Example: The implementation of CubeSat data monitoring resulted in a 40% improvement in GPS disruption detection across conflict zones from 2020-2023. This enhanced capability has directly benefited aviation safety and defense operations, with stakeholders reporting increased confidence in navigation systems.
+      render: markdown
     validations:
-      required: false
+      required: true
+
   - type: dropdown
     id: SNWGSolution
     attributes:
-      label: SNWG Project
-      description: Which SNWG project is this publication affiliated with/supporting?
+      label: '🔍 SNWG Project'
+      description: 'Which SNWG project is this publication affiliated with/supporting?'
       options: 
-        - SNWG Program as a whole
-        - SNWG Component (MO, SEP, Assessment)
-        - C1 - ADMG
-        - C1 - CSDA
-        - C1 - DCD
-        - C1 - HLS
-        - C2 - OPERA (if applicable to GSWx, DIST, or DISP specifically, please note that)
-        - C2 - AC-GEOS
-        - C2 - Freeboard and Ice Thickness
-        - C2 - Internet of Animals
-        - C2 - NISAR Soil Moisture
-        - C2 - SatCORPS
-        - C2 - Water Quality Product
-        - C3 - Air Quality Product
-        - C3 - Planetary Boundary Layer
-        - C3 - Sea Ice
-        - C3 - TEMPO NRT
-        - C3 - HLS- Vegitation Indices
-        - Other (Please specify below)
-      default: 0
-    validations: 
+        - 'SNWG Program as a whole'
+        - 'SNWG Component (MO, SEP, Assessment)'
+        - 'C1 - ADMG'
+        - 'C1 - CSDA'
+        - 'C1 - DCD'
+        - 'C1 - HLS'
+        - 'C2 - OPERA'
+        - 'C2 - AC-GEOS'
+        - 'C2 - Freeboard and Ice Thickness'
+        - 'C2 - Internet of Animals'
+        - 'C2 - NISAR Soil Moisture'
+        - 'C2 - SatCORPS'
+        - 'C2 - Water Quality Product'
+        - 'C3 - Air Quality Product'
+        - 'C3 - Planetary Boundary Layer'
+        - 'C3 - Sea Ice'
+        - 'C3 - TEMPO NRT'
+        - 'C3 - HLS- Vegitation Indices'
+        - 'Other (Please specify in Summary)'
+    validations:
       required: true
+
   - type: input
     id: impactLocation
     attributes:
-      label: Location/Venue of story impact
-      description: |
-        What is the physical location most impacted by this use case/story?
-      placeholder: Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc
+      label: '🌍 Impact Location'
+      description: 'What is the physical location most impacted by this use case/story?'
+      placeholder: 'Global/Regions of Geopolitical Conflict, Montana, Uzbekistan, locations that house many cows, etc'
     validations:
       required: true
+
   - type: input
     id: hyperlink
-    attributes: 
-      label: Link to published Source, if applicable
-      placeholder: "[text](url)"
-    validations: 
+    attributes:
+      label: '🔗 Source Link'
+      description: 'Link to the published source (if applicable)'
+      placeholder: 'https://example.com/article'
+    validations:
       required: false
+
   - type: textarea
     id: quote
     attributes:
-      label: Quote from the published source
-      placeholder: Include the paragraph that specifically calls out the SNWG Solution. 
+      label: '💬 Key Quotes'
+      description: 'Include relevant quotes that highlight the impact of the SNWG Solution'
+      placeholder: |
+        "The implementation of [Solution Name] has revolutionized our ability to track and respond to environmental changes in real-time..." - Dr. Jane Smith, Lead Researcher
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: metrics
+    attributes:
+      label: '📊 Impact Metrics'
+      description: |
+        Please provide any quantifiable metrics related to this impact story:
+        - Number of users/organizations affected
+        - Percentage improvements
+        - Cost savings
+        - Time savings
+        - Other measurable outcomes
+      placeholder: |
+        - Served 150+ aviation professionals
+        - Reduced detection time by 40%
+        - Saved approximately $500,000 in operational costs
+      render: markdown
+    validations:
+      required: false
+
   - type: textarea
     id: dependencies
     attributes:
-      label: Related Issues
+      label: '🔄 Related Issues'
       description: |
-        Add cards on which this issue depends
-        Github automatically provides a list of possible issues if you start by typing a `#`
-      placeholder: depends on
+        Add cards on which this issue depends.
+        Start typing # to see a list of related issues.
+      placeholder: 'Depends on #123, Related to #456'
+      render: markdown
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ⚠️ Please review all information before submitting. Your impact story helps demonstrate the value of SNWG solutions!
