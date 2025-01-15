@@ -1,5 +1,5 @@
 name: 'Impact Story Submission 📈'
-description: 'Document and track the impact of SNWG Solutions in the field'
+description: 'Document and track the impact of SNWG Solutions using our signature narrative structure'
 title: '[Solution Acronym] Impact Story: Brief Description'
 projects: NASA-IMPACT/139
 
@@ -9,7 +9,10 @@ body:
       value: |
         ## 📝 SNWG Impact Story Submission Form
         
-        Thank you for documenting this impact story! Please fill out the information below to help us track and showcase the value of SNWG solutions.
+        Thank you for documenting this impact story! We use a narrative structure to showcase how SNWG solutions make a difference:
+        - 🥺 The Sad Puppy: The underlying problem
+        - 🛰️ The Solution: How SNWG addresses it
+        - 🐶 The Happy Puppy: The positive outcome
         
         ---
 
@@ -17,17 +20,50 @@ body:
     id: Source
     attributes:
       label: '📰 Source'
-      description: 'Name of the source of the impact story'
+      description: 'Name of the source of the impact story (end user, publication, or interview)'
       placeholder: '(Forbes.com, EarthData.gov, SNWG SEP interview with Dr. Peanutbutter, Lead Scientist of the US Bureau of Allergies)'
     validations:
       required: true
 
-  - type: input
-    id: PublicationDate
+  - type: textarea
+    id: sadPuppy
     attributes:
-      label: '📅 Publication Date'
-      description: 'Date the value story was published or interview was held'
-      placeholder: '2024-05-07'
+      label: '🥺 The Sad Puppy - Problem Statement'
+      description: 'Describe the underlying problem that needed to be addressed'
+      placeholder: |
+        What was the costly, time-consuming, or challenging situation before the SNWG solution?
+        Example: "Agency scientists spent 40+ hours per week manually collecting rangeland data, limiting their ability to make timely management decisions."
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: '🛰️ The Solution'
+      description: 'Explain how the SNWG solution addresses the problem'
+      placeholder: |
+        What specific capabilities of the solution helped solve the problem?
+        Include details like:
+        - Technical characteristics (temporal/spectral resolution)
+        - Key features that enabled better decision-making
+        - Implementation approach
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: happyPuppy
+    attributes:
+      label: '🐶 The Happy Puppy - Outcome'
+      description: 'Describe how the solution improved the situation'
+      placeholder: |
+        Provide specific improvements and quantifiable metrics where possible:
+        - Time/cost savings
+        - Process improvements
+        - Decision-making enhancements
+        - Environmental or societal benefits
+      render: markdown
     validations:
       required: true
 
@@ -49,26 +85,11 @@ body:
     id: audience
     attributes:
       label: '👥 Target Audience'
-      description: 'Describe the primary audience that benefits from this impact'
+      description: 'Who benefits from this solution?'
       placeholder: |
-        Primary: Data scientists in the aviation industry
-        Secondary: Private equity investors and government regulatory bodies
-        Stakeholders: Aviation safety professionals and defense operators
-    validations:
-      required: true
-
-  - type: textarea
-    id: StorySummary
-    attributes:
-      label: '📋 Impact Summary'
-      description: |
-        Please provide:
-        1. A brief overview of the impact (1-2 sentences)
-        2. Key metrics or outcomes if available
-        3. Any notable stakeholder feedback
-      placeholder: |
-        Example: The implementation of CubeSat data monitoring resulted in a 40% improvement in GPS disruption detection across conflict zones from 2020-2023. This enhanced capability has directly benefited aviation safety and defense operations, with stakeholders reporting increased confidence in navigation systems.
-      render: markdown
+        Primary Users: Who directly uses the solution?
+        Stakeholders: Who benefits from the improved decision-making?
+        Broader Impact: Any additional beneficiaries?
     validations:
       required: true
 
@@ -109,42 +130,51 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: hyperlink
+  - type: textarea
+    id: visualEvidence
     attributes:
-      label: '🔗 Source Link'
-      description: 'Link to the published source (if applicable)'
-      placeholder: 'https://example.com/article'
+      label: '🖼️ Visual Evidence'
+      description: |
+        Please describe any figures or images that illustrate:
+        1. The underlying problem
+        2. The solution in action
+        3. The improved outcome
+        
+        Note: Actual files can be attached in the comment section after creating the issue
+      placeholder: |
+        Figure 1: Satellite imagery showing affected region
+        Figure 2: Screenshot of the solution interface
+        Figure 3: Before/after comparison demonstrating improvement
+      render: markdown
     validations:
       required: false
 
   - type: textarea
     id: quote
     attributes:
-      label: '💬 Key Quotes'
-      description: 'Include relevant quotes that highlight the impact of the SNWG Solution'
+      label: '💬 End User Quotes'
+      description: 'Share powerful testimonials from solution users or stakeholders'
       placeholder: |
-        "The implementation of [Solution Name] has revolutionized our ability to track and respond to environmental changes in real-time..." - Dr. Jane Smith, Lead Researcher
+        "The SNWG solution has transformed our ability to respond to environmental changes. What used to take weeks now takes hours." - Dr. Jane Smith, Lead Researcher
       render: markdown
     validations:
       required: false
 
-  - type: textarea
-    id: metrics
+  - type: input
+    id: PublicationDate
     attributes:
-      label: '📊 Impact Metrics'
-      description: |
-        Please provide any quantifiable metrics related to this impact story:
-        - Number of users/organizations affected
-        - Percentage improvements
-        - Cost savings
-        - Time savings
-        - Other measurable outcomes
-      placeholder: |
-        - Served 150+ aviation professionals
-        - Reduced detection time by 40%
-        - Saved approximately $500,000 in operational costs
-      render: markdown
+      label: '📅 Story Date'
+      description: 'When did this impact occur or when was it documented?'
+      placeholder: '2024-05-07'
+    validations:
+      required: true
+
+  - type: input
+    id: hyperlink
+    attributes:
+      label: '🔗 Related Links'
+      description: 'Links to publications, news stories, or other documentation'
+      placeholder: 'https://example.com/article'
     validations:
       required: false
 
@@ -164,4 +194,10 @@ body:
     attributes:
       value: |
         ---
-        ⚠️ Please review all information before submitting. Your impact story helps demonstrate the value of SNWG solutions!
+        ✨ Your impact story helps demonstrate the value of SNWG solutions in making real-world improvements!
+        
+        Remember:
+        - Stories should be written with public sharing in mind
+        - Focus on practical decision-making improvements
+        - Quantifiable metrics and human impact are particularly powerful
+        - Photos showing human impact (with permission) are encouraged
